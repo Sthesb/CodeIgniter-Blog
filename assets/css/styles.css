@@ -1,0 +1,9 @@
+.post_thumb {
+    width: 100%;
+    
+}
+
+.view_post_thumb {
+    height: 250px;
+    attachment: cover;
+}
