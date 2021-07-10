@@ -12,8 +12,9 @@
                     
                 </div>
                 <small ><?php echo $post["create_at"]; ?></small> 
-                <small style="background-color: #2c81ba; padding: 2px 5px; margin-left: 5px; color: #fff; border-radius: 5px;"><?php echo $post["name"]; ?></small>
-                
+                <a href="<?php echo base_url(); ?>categories/posts/<?= $post['category_id'] ?>" class="text-decoration-none">
+                    <small style="background-color: #2c81ba; padding: 2px 5px; margin-left: 5px; color: #fff; border-radius: 5px;"><?php echo $post["name"]; ?></small>
+                </a>
                 <hr>
                 <p><?php echo word_limiter($post["body"], 50); ?></p>
                 <p><a class="btn btn-info" href="<?php echo site_url("posts/". $post["slug"]); ?>">view post</a></p>

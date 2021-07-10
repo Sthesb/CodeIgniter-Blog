@@ -23,6 +23,18 @@
 
         }
 
+
+        // get posts by category
+        public function get_posts_by_category($id)
+        {
+            $this->db->order_by('create_at', 'DESC');
+            $this->db->where('category_id', $id);
+            $this->db->join('categories', 'categories.id = posts.category_id');
+
+            $query = $this->db->get('posts');
+            return $query->result_array();
+        }
+
         // create post
         public function create_post($post_image)
         {

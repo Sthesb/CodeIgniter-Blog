@@ -12,7 +12,9 @@
     <tbody>
         <?php foreach($categories as $category): ?>
         <tr>
-            <td><?= $category['name'] ?></td>
+            <td>
+                <a href="<?php echo base_url(); ?>categories/posts/<?= $category['id'] ?>"><?= $category['name'] ?></a>
+            </td>
             <td class="d-flex">
                 <a href="<?php echo base_url(); ?>categories/edit/<?= $category['id'] ?>" class="btn"><i class="fas fa-pen-alt text-warning "></i> edit</a>
                 <?= form_open('categories/delete/' . $category['id'] ); ?>

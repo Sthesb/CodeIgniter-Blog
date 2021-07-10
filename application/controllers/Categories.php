@@ -60,4 +60,20 @@
             $this->category_model->delete_category($id);
             redirect('categories');
         }
+
+        // get all posts by category
+        public function posts($id)
+        {
+            $data ['title'] = $this->category_model->get_single_category($id)[0]['name'];
+            $data ['posts'] = $this->post_model->get_posts_by_category($id);
+
+            // print_r($data['posts']);
+            // exit;
+
+            $this->load->view('templates/header');
+            $this->load->view('posts/index', $data);
+            $this->load->view('templates/footer');
+
+        }
+
     }
