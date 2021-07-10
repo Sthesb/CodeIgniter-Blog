@@ -55,8 +55,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 // $route['posts/delete/(:any)'] = 'posts/delete/$1'; // post route
 
+// Categories
+$route['categories/update'] = 'categories/update'; // categories/update
+$route['categories/create'] = 'categories/create';
+$route['categories'] = 'categories/index';
+// Posts
 $route['posts/update'] = 'posts/update'; // posts/update
-// $route['posts/delete/(:any)'] = 'posts/delete/$1'; // posts/update
 $route['posts/create'] = 'posts/create'; // posts/create
 $route['posts/(:any)'] = 'posts/view/$1'; // post route
 $route['posts'] = 'posts/index'; // posts
