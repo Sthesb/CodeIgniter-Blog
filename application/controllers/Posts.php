@@ -6,7 +6,7 @@
         {
             $data ['title'] = 'Latest Posts';
             $data ['posts'] = $this->post_model->getAllPosts();
-
+            
             
             
             $this->load->view('templates/header');
@@ -19,6 +19,11 @@
         {
             
             $data['post'] = $this->post_model->getAllPosts($slug);
+            
+            $post_id = $data['post'][0]['id'];
+            $data['comments'] = $this->comment_model->get_comments_by_post($post_id);
+
+
             if(empty($data['post']))
             {
                 show_404();
@@ -79,8 +84,8 @@
         public function delete($id)
         {
             $this->post_model->delete_post($id);
-            // echo $id;
-            // exit;
+            $this->comment_model->delete_comment_by_post_id($id);
+            
             redirect('posts');
         }
 

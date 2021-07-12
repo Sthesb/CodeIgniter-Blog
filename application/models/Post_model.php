@@ -16,13 +16,21 @@
                 return $query->result_array();
             }
 
-            // $this->db->join('categories', 'categories.id = posts.category_id');
+            // $this->db->inner_join('categories', 'categories.id = posts.category_id');
+            // $this->db->join('comments', 'comments.post_id = posts.id');
             $query = $this->db->get_where('posts', array("slug" => $slug));
             
             return $query->result_array();
 
         }
 
+        // get post by id
+        public function get_post_by_id($id)
+        {
+            $query = $this->db->get_where('posts', array("id" => $id));
+            
+            return $query->result_array();
+        }
 
         // get posts by category
         public function get_posts_by_category($id)
@@ -69,7 +77,7 @@
         // delete post
         public function delete_post($id)
         {
-            echo $id;
+            
             $this->db->where('id', $id);
             $this->db->delete('posts');
 
