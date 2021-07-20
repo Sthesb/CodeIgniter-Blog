@@ -37,7 +37,10 @@
         // create post
         public function create()
         {
-            
+            // check if user is logged in
+            if(!$this->session->userdata('logged_in')){
+                redirect('users/login');
+            }
 
             $data ['title'] = 'Create Post';
             $data ['categories'] = $this->post_model->get_categories();
@@ -57,8 +60,8 @@
                 $config['upload_path'] = './assets/images/posts/';
                 $config['allowed_types'] = 'gif|jpg|png';
                 $config['max_size'] = '2048';
-                $config['max_width'] = '500';
-                $config['max_height'] = '500';
+                // $config['max_width'] = '500';
+                // $config['max_height'] = '500';
 
                 $this->load->library('upload', $config);
 
@@ -75,6 +78,10 @@
 
 
                 $this->post_model->create_post($post_image);
+                // set message
+
+                $this->session->set_flashdata('post_created', 
+                'Post created');
                 redirect('posts');
             }
             
@@ -83,6 +90,11 @@
         // delete post
         public function delete($id)
         {
+            // check if user is logged in
+            if(!$this->session->userdata('logged_in')){
+                redirect('users/login');
+            }
+            
             $this->post_model->delete_post($id);
             $this->comment_model->delete_comment_by_post_id($id);
             
@@ -92,6 +104,11 @@
         // edit post
         public function edit($slug)
         {
+            // check if user is logged in
+            if(!$this->session->userdata('logged_in')){
+                redirect('users/login');
+            }
+
             // echo $slug;
             // exit();
 
@@ -114,7 +131,10 @@
         // update post
         public function update()
         {
+
             $this->post_model->update_post();
+            $this->session->set_flashdata('post_updated', 
+            'Post upated');
             redirect('posts');
         }
 

@@ -18,6 +18,11 @@
         // create
         public function create()
         {
+            // check if user is logged in
+            if(!$this->session->userdata('logged_in')){
+                redirect('users/login');
+            }
+
             $data ['title'] = 'Create Category';
 
             $this->form_validation->set_rules('name', 'Category Name', 'required');
@@ -28,6 +33,10 @@
                 $this->load->view('templates/footer');
             }else{
                 $this->category_model->create_category();
+                // set message
+                $this->session->set_flashdata('category_created', 
+                'Category Created');
+
                 redirect('categories');
             }
 
@@ -36,6 +45,11 @@
         // edit 
         public function edit($id)
         {
+            // check if user is logged in
+            if(!$this->session->userdata('logged_in')){
+                redirect('users/login');
+            }
+
             $data['title'] = 'Edit Cagetory';
             $data['category'] = $this->category_model->get_single_category($id);
 
@@ -48,15 +62,28 @@
         // update category
         public function update()
         {
+            // check if user is logged in
+            if(!$this->session->userdata('logged_in')){
+                redirect('users/login');
+            }
+
             echo $this->input->post('name');
             
             $this->category_model->update_catgory();
+            // set message
+            $this->session->set_flashdata('category_updated', 
+            'Category Updated');
             redirect('categories');
         }
 
         // delete category
         public function delete($id)
         {
+            // check if user is logged in
+            if(!$this->session->userdata('logged_in')){
+                redirect('users/login');
+            }
+            
             $this->category_model->delete_category($id);
             redirect('categories');
         }

@@ -55,10 +55,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 // $route['posts/delete/(:any)'] = 'posts/delete/$1'; // post route
 
+// users
+
 
 // comments
 $route['comments/create/(:any)'] = 'comments/create/$1';
-
 // Categories
 $route['categories/posts/(:any)'] = 'categories/posts/$1';
 $route['categories/update'] = 'categories/update'; // categories/update
